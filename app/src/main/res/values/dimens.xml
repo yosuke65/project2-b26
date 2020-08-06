@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_register_layout">15dp</dimen>
+    <dimen name="bottom_sheet_menu">60dp</dimen>
+    <dimen name="bottom_sheet_menu_margin">10dp</dimen>
+    <dimen name="dimen_edit_text1">20dp</dimen>
+</resources>

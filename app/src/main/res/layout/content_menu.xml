@@ -1,0 +1,259 @@
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/reveal_menu"-->
+<!--    android:layout_widt="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="#263340"-->
+<!--    android:paddingHorizontal="10dp"-->
+<!--    android:paddingVertical="30dp"-->
+<!--    android:visibility="invisible"-->
+<!--    tools:context=".ui.main.fragment.BottomSheetFragment">-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_alerts"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_add_alert_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_alerts"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_properties"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_alerts"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:text="Alerts"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/button_transaction"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_alerts"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_alerts"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_alerts" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_properties"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_house_24"-->
+<!--        android:clickable="true"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:onClick="@{()->item.startPropertyActivity()}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_properties"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_tenants"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_alerts"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_properties"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Properties"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/button_collect_rent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_properties"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_properties"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_properties" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_tenants"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_person_242"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:onClick="@{()->item.startTenantActivity()}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_tenants"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_properties"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_tenants"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Tenants"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/button_to_do_list"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_tenants"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_tenants"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_tenants" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_transaction"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_credit_card_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:onClick="@{()->item.startTransactionActivity()}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_transaction"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_collect_rent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_view_alerts" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_transaction"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Transaction"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/button_trips"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_transaction"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_transaction"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_transaction" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_collect_rent"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_attach_money_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:onClick="@{()->item.startCollectRentActivity()}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_collect_rent"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_to_do_list"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_transaction"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_view_properties" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_collect_rent"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Collect Rent"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/button_documents"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_collect_rent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_collect_rent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_collect_rent" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_to_do_list"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_check_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:onClick="@{()->item.startToDoActivity()}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_to_do"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_collect_rent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_view_tenants" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_to_do"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="To-do"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/button_vendors"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_to_do_list"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_to_do_list"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_to_do_list" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_trips"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_directions_car_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_trips"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_documents"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_view_transaction" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_trips"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Trips"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_trips"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_trips"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_trips" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_documents"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_description_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        android:onClick="@{()->item.startDocumentActivity()}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_documents"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/button_vendors"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_trips"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_view_collect_rent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_documents"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Documents"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_documents"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_documents"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_documents" />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/button_vendors"-->
+<!--        android:layout_width="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_height="@dimen/bottom_sheet_menu"-->
+<!--        android:layout_margin="@dimen/bottom_sheet_menu_margin"-->
+<!--        android:background="@drawable/ic_baseline_people_24"-->
+<!--        android:foreground="?attr/selectableItemBackground"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/text_view_vendors"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/button_documents"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/text_view_to_do" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/text_view_vendors"-->
+<!--        style="@style/TextAppearance.AppCompat.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Vendors"-->
+<!--        android:textColor="@android:color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/button_vendors"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/button_vendors"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_vendors" />-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
