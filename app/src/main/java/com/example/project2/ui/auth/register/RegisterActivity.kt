@@ -55,6 +55,7 @@ class RegisterActivity : AppCompatActivity() {
 
                     override fun onAnimationEnd(anim: Animation?) {
                         landlord_email.visibility = View.INVISIBLE
+                        landlord_email.isEnabled = false
                         radio_group_user_type.animate()
                             .setDuration(500)
                             .translationY((landlord_email.height).toFloat())
@@ -91,6 +92,8 @@ class RegisterActivity : AppCompatActivity() {
                             )
                             landlord_email.animation = animEditText.also { it.start() }
                             landlord_email.visibility = View.VISIBLE
+                            landlord_email.isEnabled = true
+
                         }
 
                         override fun onAnimationStart(anim: Animation?) {
@@ -113,6 +116,8 @@ class RegisterActivity : AppCompatActivity() {
                     )
                     landlord_email.startAnimation(animEditText)
                     landlord_email.visibility = View.VISIBLE
+                    landlord_email.isEnabled = true
+
                 }
                 .setDuration(500)
                 .start()

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+    <shape
+        android:shape="ring"
+        android:thickness="1dp"
+        android:useLevel="false">
+        <gradient
+            android:angle="360"
+            android:endColor="#4BEDC7"
+            android:startColor="#3861F6"
+            android:type="linear" />
+
+        <padding
+            android:bottom="@dimen/menu_icon_padding"
+            android:left="@dimen/menu_icon_padding"
+            android:right="@dimen/menu_icon_padding"
+            android:top="@dimen/menu_icon_padding" />
+    </shape>
+    </item>
+</selector>
