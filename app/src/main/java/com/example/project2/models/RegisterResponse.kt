@@ -1,4 +1,7 @@
 package com.example.project2.models
 
-class RegisterResponse {
-}
+data class RegisterResponse(
+    val `data`: User,
+    val error: Boolean,
+    val message: String
+)

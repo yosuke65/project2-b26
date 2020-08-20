@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="login_register_layout">15dp</dimen>
-    <dimen name="bottom_sheet_menu">60dp</dimen>
-    <dimen name="bottom_sheet_menu_margin">10dp</dimen>
+    <dimen name="bottom_sheet_menu">80dp</dimen>
+    <dimen name="bottom_sheet_menu_margin">0dp</dimen>
     <dimen name="dimen_edit_text1">20dp</dimen>
+    <dimen name="padding_bottom_menu_icon">10dp</dimen>
+    <dimen name="menu_icon_padding">25dp</dimen>
+    <dimen name="margin_top_edit_text_add_property">20dp</dimen>
 </resources>

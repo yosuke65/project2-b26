@@ -4,6 +4,7 @@ data class Task(
     var id:String? = null,
     var isCompleted:Boolean = false,
     var note:String? = null,
-    var title:String = ""
+    var title:String = "",
+    var date:String? = null
 ) {
 }

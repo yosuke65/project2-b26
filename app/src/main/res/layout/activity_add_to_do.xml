@@ -1,48 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="0dp"
-    tools:context=".ui.main.todo.AddToDoActivity">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_main" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edit_text_title"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.example.project2.ui.main.todo.ViewModelToDo" />
+        <variable
+            name="item"
+            type="com.example.project2.ui.main.todo.AddToDoActivity" />
+        <variable
+            name="titleInput"
+            type="com.google.android.material.textfield.TextInputEditText" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="@dimen/dimen_edit_text1"
-        android:hint="What are you planning"
-        android:inputType="textCapSentences|textMultiLine"
-        android:maxLines="5"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        android:layout_height="match_parent"
+        android:padding="0dp"
+        tools:context=".ui.main.todo.AddToDoActivity">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/edit_text_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_marginTop="@dimen/dimen_edit_text1"
-        android:hint="Add note"
-        android:inputType="textCapSentences|textMultiLine"
-        android:maxLines="5"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_title" />
+        <include layout="@layout/toolbar_main" />
 
-    <Button
-        android:id="@+id/button_create_task"
-        style="@style/TextAppearance.MaterialComponents.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blueTheme2"
-        android:onClick="@{()->item.createTask}"
-        android:text="Create"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_edit_text"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf ="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginTop="@dimen/dimen_edit_text1"
+                android:drawableStart="@drawable/ic_baseline_edit_24"
+                android:drawablePadding="10dp"
+                android:text="@={viewModel.taskTitle}"
+                android:hint="What are you planning?"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="5" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:drawableStart="@drawable/ic_baseline_note_add_24"
+            android:drawablePadding="10dp"
+            android:layout_marginTop="@dimen/dimen_edit_text1"
+            android:text="@={viewModel.taskNote}"
+            android:hint="Add note"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLines="5"
+            app:layout_constraintTop_toBottomOf="@+id/layout_edit_text" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/dimen_edit_text1"
+            android:drawableStart="@drawable/ic_baseline_notifications_none_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:onClick="@{()->item.showDatePickerDialog()}"
+            android:padding="20dp"
+            android:text="@={viewModel.taskDate}"
+            android:textColor="#535353"
+            android:textSize="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_note"
+            tools:text="8/9/2020" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/dimen_edit_text1"
+            android:drawableStart="@drawable/ic_baseline_access_time_24"
+            android:drawablePadding="10dp"
+            android:fontFamily="@font/roboto_medium"
+            android:onClick="@{()->item.showTimePickerDialog()}"
+            android:padding="20dp"
+            android:text="@={viewModel.taskTime}"
+            android:textColor="#535353"
+            android:textSize="16dp"
+            android:alpha="0"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_text_note"
+            tools:text="9:30" />
+
+        <Button
+            android:id="@+id/button_create_task"
+            style="@style/TextAppearance.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_home1"
+            android:onClick="@{()->viewModel.createTask(titleInput)}"
+            android:text="Create"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-
+<item android:drawable="@drawable/ic_baseline_arrow_back_ios_24">
+    <shape android:shape="rectangle">
+        <solid android:color="@android:color/transparent"/>
+        <padding android:right="-40dp"/>
+    </shape>
+</item>
 </selector>

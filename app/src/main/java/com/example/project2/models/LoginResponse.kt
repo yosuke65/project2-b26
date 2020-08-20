@@ -1,4 +1,6 @@
 package com.example.project2.models
 
-class LoginResponse {
-}
+data class LoginResponse(
+    val token: String,
+    val user: User
+)

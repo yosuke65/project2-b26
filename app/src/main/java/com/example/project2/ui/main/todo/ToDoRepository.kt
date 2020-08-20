@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.project2.models.Task
+import com.example.project2.utils.PreferenceManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -14,19 +15,26 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import java.lang.Exception
 
-class ToDoRepositories {
+class ToDoRepository {
 
     companion object {
         const val TAG = "ToDoRepositories"
     }
 
     private var tasks = MutableLiveData<ArrayList<Task>>()
-    private val ref = FirebaseDatabase.getInstance().reference.child("Task")
+    private val ref = FirebaseDatabase.getInstance().reference.child(
+        PreferenceManager.getPreference(
+            PreferenceManager.ID,
+            ""
+        )
+    ).child("Task")
+
     private var listener: OnRepositoryListener? = null
 
 
     interface OnRepositoryListener {
         fun onUploadSuccess()
+        fun onDeleteSuccess()
         fun onUploadFailure()
         fun onUpdateSuccess()
     }
@@ -85,6 +93,22 @@ class ToDoRepositories {
                     for (child in snapshot.children) {
                         child.ref.setValue(task)
                         listener!!.onUpdateSuccess()
+                    }
+                }
+            })
+    }
+
+    fun deleteTask(task: Task) {
+        val ref = ref.orderByChild("id").equalTo(task.id)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(error: DatabaseError) {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (child in snapshot.children) {
+                        child.ref.removeValue()
+                        listener!!.onDeleteSuccess()
                     }
                 }
             })

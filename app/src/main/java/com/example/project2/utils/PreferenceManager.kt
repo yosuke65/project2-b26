@@ -4,15 +4,15 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.project2.models.User
 
-object SessionManager {
+object PreferenceManager {
 
     private const val USER_INFO = "user_info"
-    private const val ID = "id"
-    private const val EMAIL = "email"
-    private const val USERNAME = "username"
-    private const val TOKEN = "token"
-    private const val TYPE = "type"
-    private const val ISLOGGEDIN = "isLoggedIn"
+    const val ID = "id"
+    const val EMAIL = "email"
+    const val USERNAME = "username"
+    const val TOKEN = "token"
+    const val TYPE = "type"
+    const val IS_LOGGED_IN = "isLoggedIn"
 
     private lateinit var sharedPreferences: SharedPreferences
 
@@ -20,34 +20,24 @@ object SessionManager {
         sharedPreferences = context.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
     }
 
-    fun getPreference(key:String,defaultValue:String):String{
-        return sharedPreferences.getString(key,defaultValue)?:defaultValue
+    fun getPreference(key: String, defaultValue: String): String {
+        return sharedPreferences.getString(key, defaultValue) ?: defaultValue
     }
 
-    fun savePreference(key: String,value:String){
-        sharedPreferences.edit().putString(key,value).apply()
+    fun getPreference(key: String, defaultValue: Boolean): Boolean {
+        return sharedPreferences.getBoolean(key, defaultValue)
     }
 
-    fun saveLoginStatus(user: User, token: String) {
-        editor.apply {
-            putString(ID, user._id)
-            putString(EMAIL, user.email)
-            putString(USERNAME, user.name)
-            putString(TOKEN, token)
-            putString(TYPE, user.type)
-            putBoolean(ISLOGGEDIN, true)
-        }.commit()
+
+    fun savePreference(key: String, value: String) {
+        sharedPreferences.edit().putString(key, value).apply()
     }
 
-    fun getUserType() = sharedPreferences.getString(TYPE, null)
-
-    fun getUserId() = sharedPreferences.getString(ID, null)
-
-    fun isLoggedIn(): Boolean {
-        return sharedPreferences.getBoolean(ISLOGGEDIN, false)
+    fun savePreference(key: String, value: Boolean) {
+        sharedPreferences.edit().putBoolean(key, value).apply()
     }
 
     fun logout() {
-        editor.clear().commit()
+        sharedPreferences.edit().clear().commit()
     }
 }

@@ -1,331 +1,653 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="item"
-            type="com.example.project2.ui.main.activities.HomeActivity" />
+            type="com.example.project2.ui.main.home.HomeActivity" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/home_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_main_layout1">
+            android:background="@color/white2">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context=".ui.main.activities.HomeActivity">
+                android:visibility="visible"
+                tools:context=".ui.main.home.HomeActivity">
 
 
                 <include
-                    android:id="@+id/toolbar"
-                    layout="@layout/toolbar_main"
+                    layout="@layout/toolbar_collapsing_home2"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/text_view_summary"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:text="Financial Summary"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nestedScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    android:overScrollMode="never"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <TextView
-                    android:id="@+id/text_view_expense"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="200dp"
-                    android:padding="20dp"
-                    android:text="Expense"
-                    android:textColor="@android:color/white"
-                    android:textSize="20dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_view_summary" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="15dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view_expense_overdue"
+                                android:layout_width="@dimen/_135sdp"
+                                android:layout_height="@dimen/_100sdp"
+                                android:backgroundTint="#FA7452"
+                                app:cardCornerRadius="@dimen/_20sdp"
+                                app:cardElevation="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:layout_marginRight="10dp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toLeftOf="@+id/card_view_expense_upcoming"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="$0.00"
+                                        android:textSize="@dimen/_15sdp"
+                                        android:fontFamily="@font/baloo"
+                                        android:textColor="@color/occupancy_card_text"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintBottom_toTopOf="@+id/text_view_overdue_count"
+                                        app:layout_constraintLeft_toLeftOf="parent"/>
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                                    <TextView
+                                        android:id="@+id/text_view_overdue_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_15sdp"
+                                        android:layout_marginBottom="@dimen/_10sdp"
+                                        android:fontFamily="@font/baloo"
+                                        android:text="0"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_14sdp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintHorizontal_chainStyle="packed"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toLeftOf="@+id/text_view_overdue" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floating_action_button_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:layout_margin="20dp"
-                android:backgroundTint="@android:color/white"
-                android:src="@drawable/ic_baseline_menu_24"
-                app:borderWidth="0dp" />
+                                    <TextView
+                                        android:id="@+id/text_view_overdue"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_10sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="Overdue Expenses"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_overdue_count"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toRightOf="@+id/text_view_overdue_count"
+                                        app:layout_constraintRight_toRightOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_10sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="Overdue"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_14sdp"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view_expense_upcoming"
+                                android:layout_width="@dimen/_135sdp"
+                                android:layout_height="@dimen/_100sdp"
+                                app:cardCornerRadius="@dimen/_20sdp"
+                                android:backgroundTint="#FDBA0E"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                app:layout_constraintBottom_toTopOf="@+id/card_view_occupancy"
+                                app:layout_constraintLeft_toRightOf="@+id/card_view_expense_overdue"
+                                app:layout_constraintRight_toRightOf="parent"
+                                android:layout_marginBottom="@dimen/_20sdp"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="$0.00"
+                                        android:textSize="@dimen/_15sdp"
+                                        android:fontFamily="@font/baloo"
+                                        android:textColor="@color/occupancy_card_text"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintBottom_toTopOf="@+id/text_view_upcoming_count"
+                                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+
+                                    <TextView
+                                        android:id="@+id/text_view_upcoming_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_15sdp"
+                                        android:layout_marginBottom="@dimen/_10sdp"
+                                        android:fontFamily="@font/baloo"
+                                        android:text="0"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_14sdp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintHorizontal_chainStyle="packed"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toLeftOf="@+id/text_view_upcoming" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_upcoming"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_10sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="Upcoming Expenses"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_10sdp"
+                                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_upcoming_count"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toRightOf="@+id/text_view_upcoming_count"
+                                        app:layout_constraintRight_toRightOf="parent" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_10sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="Upcoming"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_14sdp"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_view_occupancy"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_250sdp"
+                                android:layout_marginTop="@dimen/_20sdp"
+                                android:backgroundTint="#28394C"
+                                app:cardCornerRadius="@dimen/_40sdp"
+                                app:layout_constraintTop_toBottomOf="@id/card_view_expense_overdue">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/occupancey"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="@dimen/_20sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="Occupancy"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_15sdp"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_tenanted_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_10sdp"
+                                        android:fontFamily="@font/baloo"
+                                        android:text="0"
+                                        android:textColor="@color/red1"
+                                        android:textSize="@dimen/_16sdp"
+                                        app:layout_constraintHorizontal_chainStyle="packed"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toLeftOf="@+id/text_view_untenanted_count"
+                                        app:layout_constraintTop_toBottomOf="@+id/occupancey" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_tenanted"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_10sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="  tenanted"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:textSize="@dimen/_12sdp"
+                                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_tenanted_count"
+                                        app:layout_constraintLeft_toRightOf="@+id/text_view_tenanted_count"
+                                        app:layout_constraintRight_toLeftOf="@+id/text_view_untenanted_count"
+                                        app:layout_constraintTop_toBottomOf="@+id/occupancey" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_untenanted_count"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/baloo"
+                                        android:paddingStart="@dimen/_30sdp"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:text="0"
+                                        android:textSize="@dimen/_16sdp"
+                                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_tenanted_count"
+                                        app:layout_constraintLeft_toRightOf="@+id/text_view_tenanted_count"
+                                        app:layout_constraintRight_toLeftOf="@+id/text_view_untenanted"
+                                        app:layout_constraintTop_toBottomOf="@+id/occupancey" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_untenanted"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textColor="@color/occupancy_card_text"
+                                        android:layout_marginTop="@dimen/_10sdp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="  untenanted"
+                                        android:textSize="@dimen/_12sdp"
+                                        app:layout_constraintBaseline_toBaselineOf="@+id/text_view_untenanted_count"
+                                        app:layout_constraintLeft_toRightOf="@+id/text_view_untenanted_count"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/occupancey" />
+
+
+                                    <ProgressBar
+                                        android:id="@+id/progress_bar_percentage_indicator"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="@dimen/_150sdp"
+                                        android:layout_height="@dimen/_150sdp"
+                                        android:layout_marginTop="@dimen/_30sdp"
+                                        android:background="@drawable/progressbar_bg"
+                                        android:indeterminate="false"
+                                        android:progressDrawable="@drawable/progress_indicator"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/text_view_percentage_occupancy"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/baloo"
+                                        android:text="0%"
+                                        android:textColor="@color/red1"
+                                        android:textSize="@dimen/_17sdp"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintVertical_bias="0.54" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/text_view_percentage_occupancy"
+                                        android:layout_marginTop="-15dp"
+                                        android:fontFamily="@font/roboto_medium"
+                                        android:text="Tenanted"
+                                        android:textColor="@color/occupancy_card_text"
+                                        app:layout_constraintLeft_toLeftOf="parent"
+                                        app:layout_constraintRight_toRightOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/text_view_percentage_occupancy" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/reveal_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#263340"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="30dp"
-            android:visibility="invisible"
-            tools:context=".ui.main.fragment.BottomSheetFragment">
+            android:layout_marginTop="0dp"
+            android:background="#D8000000"
+            android:visibility="invisible">
 
-            <Button
-                android:id="@+id/button_alerts"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_add_alert_24"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_alerts"
-                app:layout_constraintEnd_toStartOf="@+id/button_properties"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/text_view_alerts"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
+            <include
+                layout="@layout/toolbar_main_menu"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:text="Alerts"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/button_transaction"
-                app:layout_constraintEnd_toEndOf="@+id/button_alerts"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_alerts"
-                app:layout_constraintTop_toBottomOf="@+id/button_alerts" />
+                app:layout_constraintBottom_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/button_properties"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_house_24"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{()->item.startPropertyActivity()}"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_properties"
-                app:layout_constraintEnd_toStartOf="@+id/button_tenants"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_alerts"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/text_view_properties"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Properties"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/button_collect_rent"
-                app:layout_constraintEnd_toEndOf="@+id/button_properties"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_properties"
-                app:layout_constraintTop_toBottomOf="@+id/button_properties" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/menu_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:background="@android:color/transparent"
+                >
 
-            <Button
-                android:id="@+id/button_tenants"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_person_242"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{()->item.startTenantActivity()}"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_tenants"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_properties"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/text_view_tenants"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tenants"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/button_to_do_list"
-                app:layout_constraintEnd_toEndOf="@+id/button_tenants"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_tenants"
-                app:layout_constraintTop_toBottomOf="@+id/button_tenants" />
+                <Button
+                    android:id="@+id/button_alerts"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_alert"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_alerts"
+                    app:layout_constraintEnd_toStartOf="@+id/button_properties"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-            <Button
-                android:id="@+id/button_transaction"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_credit_card_24"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{()->item.startTransactionActivity()}"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_transaction"
-                app:layout_constraintEnd_toStartOf="@+id/button_collect_rent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_alerts" />
+                <TextView
+                    android:id="@+id/text_view_alerts"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:paddingBottom="@dimen/padding_bottom_menu_icon"
+                    android:text="Alerts"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toTopOf="@+id/button_transaction"
+                    app:layout_constraintEnd_toEndOf="@+id/button_alerts"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_alerts"
+                    app:layout_constraintTop_toBottomOf="@+id/button_alerts" />
 
-            <TextView
-                android:id="@+id/text_view_transaction"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Transaction"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/button_trips"
-                app:layout_constraintEnd_toEndOf="@+id/button_transaction"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_transaction"
-                app:layout_constraintTop_toBottomOf="@+id/button_transaction" />
+                <Button
+                    android:id="@+id/button_properties"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_properties"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{()->item.startPropertyActivity()}"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_properties"
+                    app:layout_constraintEnd_toStartOf="@+id/button_tenants"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/button_alerts"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-            <Button
-                android:id="@+id/button_collect_rent"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_attach_money_24"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{()->item.startCollectRentActivity()}"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_collect_rent"
-                app:layout_constraintEnd_toStartOf="@+id/button_to_do_list"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_transaction"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_properties" />
+                <TextView
+                    android:id="@+id/text_view_properties"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_bottom_menu_icon"
+                    android:text="Properties"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toTopOf="@+id/button_collect_rent"
+                    app:layout_constraintEnd_toEndOf="@+id/button_properties"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_properties"
+                    app:layout_constraintTop_toBottomOf="@+id/button_properties" />
 
-            <TextView
-                android:id="@+id/text_view_collect_rent"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Collect Rent"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/button_documents"
-                app:layout_constraintEnd_toEndOf="@+id/button_collect_rent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_collect_rent"
-                app:layout_constraintTop_toBottomOf="@+id/button_collect_rent" />
+                <Button
+                    android:id="@+id/button_tenants"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_tenants"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{()->item.startTenantActivity()}"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_tenants"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/button_properties"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-            <Button
-                android:id="@+id/button_to_do_list"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_check_24"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{()->item.startToDoActivity()}"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_to_do"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_collect_rent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_tenants" />
+                <TextView
+                    android:id="@+id/text_view_tenants"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_bottom_menu_icon"
+                    android:text="Tenants"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toTopOf="@+id/button_to_do_list"
+                    app:layout_constraintEnd_toEndOf="@+id/button_tenants"
+                    app:layout_constraintStart_toStartOf="@+id/button_tenants"
+                    app:layout_constraintTop_toBottomOf="@+id/button_tenants" />
 
-            <TextView
-                android:id="@+id/text_view_to_do"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To-do"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toTopOf="@+id/button_vendors"
-                app:layout_constraintEnd_toEndOf="@+id/button_to_do_list"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_to_do_list"
-                app:layout_constraintTop_toBottomOf="@+id/button_to_do_list" />
+                <Button
+                    android:id="@+id/button_transaction"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_transaction"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{()->item.startTransactionActivity()}"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_transaction"
+                    app:layout_constraintEnd_toStartOf="@+id/button_collect_rent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_alerts" />
 
-            <Button
-                android:id="@+id/button_trips"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_directions_car_24"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_trips"
-                app:layout_constraintEnd_toStartOf="@+id/button_documents"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_transaction" />
+                <TextView
+                    android:id="@+id/text_view_transaction"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_bottom_menu_icon"
+                    android:text="Transaction"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toTopOf="@+id/button_trips"
+                    app:layout_constraintEnd_toEndOf="@+id/button_transaction"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_transaction"
+                    app:layout_constraintTop_toBottomOf="@+id/button_transaction" />
 
-            <TextView
-                android:id="@+id/text_view_trips"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trips"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_trips"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_trips"
-                app:layout_constraintTop_toBottomOf="@+id/button_trips" />
+                <Button
+                    android:id="@+id/button_collect_rent"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_collect_rent"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{()->item.startCollectRentActivity()}"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_collect_rent"
+                    app:layout_constraintEnd_toStartOf="@+id/button_to_do_list"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/button_transaction"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_properties" />
 
-            <Button
-                android:id="@+id/button_documents"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_description_24"
-                android:foreground="?attr/selectableItemBackground"
-                android:onClick="@{()->item.startDocumentActivity()}"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_documents"
-                app:layout_constraintEnd_toStartOf="@+id/button_vendors"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_trips"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_collect_rent" />
+                <TextView
+                    android:id="@+id/text_view_collect_rent"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_bottom_menu_icon"
+                    android:text="Collect Rent"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toTopOf="@+id/button_documents"
+                    app:layout_constraintEnd_toEndOf="@+id/button_collect_rent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_collect_rent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_collect_rent" />
 
-            <TextView
-                android:id="@+id/text_view_documents"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Documents"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_documents"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_documents"
-                app:layout_constraintTop_toBottomOf="@+id/button_documents" />
+                <Button
+                    android:id="@+id/button_to_do_list"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_todo"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{()->item.startToDoActivity()}"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_to_do"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/button_collect_rent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_tenants" />
 
-            <Button
-                android:id="@+id/button_vendors"
-                android:layout_width="@dimen/bottom_sheet_menu"
-                android:layout_height="@dimen/bottom_sheet_menu"
-                android:layout_margin="@dimen/bottom_sheet_menu_margin"
-                android:background="@drawable/ic_baseline_people_24"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintBottom_toTopOf="@+id/text_view_vendors"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/button_documents"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_to_do" />
+                <TextView
+                    android:id="@+id/text_view_to_do"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_bottom_menu_icon"
+                    android:text="To-do"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toTopOf="@+id/button_vendors"
+                    app:layout_constraintEnd_toEndOf="@+id/button_to_do_list"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_to_do_list"
+                    app:layout_constraintTop_toBottomOf="@+id/button_to_do_list" />
 
-            <TextView
-                android:id="@+id/text_view_vendors"
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vendors"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/button_vendors"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/button_vendors"
-                app:layout_constraintTop_toBottomOf="@+id/button_vendors" />
+                <Button
+                    android:id="@+id/button_trips"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_trips"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_trips"
+                    app:layout_constraintEnd_toStartOf="@+id/button_documents"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_transaction" />
 
+                <TextView
+                    android:id="@+id/text_view_trips"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trips"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/button_trips"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_trips"
+                    app:layout_constraintTop_toBottomOf="@+id/button_trips" />
+
+                <Button
+                    android:id="@+id/button_documents"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_documents"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:onClick="@{()->item.startDocumentActivity()}"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_documents"
+                    app:layout_constraintEnd_toStartOf="@+id/button_vendors"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/button_trips"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_collect_rent" />
+
+                <TextView
+                    android:id="@+id/text_view_documents"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Documents"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/button_documents"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_documents"
+                    app:layout_constraintTop_toBottomOf="@+id/button_documents" />
+
+                <Button
+                    android:id="@+id/button_vendors"
+                    android:layout_width="@dimen/bottom_sheet_menu"
+                    android:layout_height="@dimen/bottom_sheet_menu"
+                    android:layout_margin="@dimen/bottom_sheet_menu_margin"
+                    android:background="@drawable/icon_menu_vendors"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toTopOf="@+id/text_view_vendors"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/button_documents"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view_to_do" />
+
+                <TextView
+                    android:id="@+id/text_view_vendors"
+                    style="@style/TextAppearance.AppCompat.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vendors"
+                    android:textColor="@color/white1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/button_vendors"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="@+id/button_vendors"
+                    app:layout_constraintTop_toBottomOf="@+id/button_vendors" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_action_button_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:onClick="@{()->item.toggleMenu()}"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="20dp"
+            android:backgroundTint="#FF7669"
+            app:borderWidth="0dp"
+            app:srcCompat="@drawable/ic_baseline_menu_24" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_second_home"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:visibility="invisible"
+            android:alpha="0"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/text_view_toolbar_second_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textColor="#CD000000"
+                android:gravity="center"
+                android:paddingRight="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="@dimen/_19sdp"/>
+        </androidx.appcompat.widget.Toolbar>
 
     </RelativeLayout>
 

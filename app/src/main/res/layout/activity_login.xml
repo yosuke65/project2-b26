@@ -1,66 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".ui.auth.RegisterActivity">
-
-    <TextView
-        style="@style/Widget.MaterialComponents.TextView"
-        android:id="@+id/text_view_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_text_email"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.example.project2.ui.auth.login.LoginActivity" />
+        <variable
+            name="viewModel"
+            type="com.example.project2.ui.auth.login.LoginViewModel" />
+        <variable
+            name="emailField"
+            type="com.google.android.material.textfield.TextInputLayout" />
+        <variable
+            name="passwordField"
+            type="com.google.android.material.textfield.TextInputLayout" />
+        <variable
+            name="lottie"
+            type="com.airbnb.lottie.LottieAnimationView" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/edit_text_password"
-        android:layout_marginBottom="@dimen/login_register_layout"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:background="@drawable/bg_login_register"
+        tools:context=".ui.auth.register.RegisterActivity">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottie_loading_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias=".4"
+            app:lottie_rawRes="@raw/login_loading"
+            android:visibility="invisible"
+            app:lottie_loop="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_30sdp"
+            android:text="Welcome."
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias=".4"/>
+
+        <TextView
+            style="@style/Widget.MaterialComponents.TextView"
+            android:id="@+id/text_view_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="Register"
+            android:onClick="@{()->activity.startRegisterActivity()}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_text_email"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@id/edit_text_password"
+            android:layout_marginBottom="@dimen/login_register_layout"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                android:drawablePadding="10dp"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:text="@={viewModel.email}"
+                android:hint="Email"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_baseline_email_24"
-            android:drawablePadding="10dp"
-            android:hint="Email"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginBottom="25dp"
+            app:passwordToggleTint="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@id/button_login"
+            app:passwordToggleEnabled="true">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
+                android:drawablePadding="10dp"
+                android:text="@={viewModel.password}"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edit_text_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@id/button_login"
-        app:passwordToggleEnabled="true">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <Button
+            android:id="@+id/button_login"
+            style="@style/TextAppearance.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_baseline_security_24"
-            android:drawablePadding="10dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        style="@style/TextAppearance.MaterialComponents.Button"
-        android:id="@+id/button_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/bg_round_corner_solid1"
-        android:text="@string/login"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_marginBottom="40dp"
+            android:textSize="@dimen/_12sdp"
+            android:background="@drawable/bg_round_corner_solid1"
+            android:fontFamily="@font/roboto_medium"
+            android:onClick="@{()->viewModel.login(emailField,passwordField,lottie)}"
+            android:text="@string/login"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="20dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

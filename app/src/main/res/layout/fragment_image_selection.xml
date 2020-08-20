@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="fragment"
+            type="com.example.project2.ui.main.property.addproperty.ImageSelectionFragment" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/_5sdp"
+        android:id="@+id/bottom_sheet_fragment"
+        app:layout_behavior="@string/bottom_sheet_behavior"
+        app:behavior_hideable="true"
+        android:layout_marginTop="@dimen/_150sdp"
+        tools:context=".ui.main.property.addproperty.ImageSelectionFragment">
+
+        <TextView
+            android:id="@+id/button_open_camera"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/bg_round_corner_top_bottomsheet"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:onClick="@{()->fragment.openCamera()}"
+            android:text="Take photo"
+            android:clickable="true"
+            android:elevation="@dimen/_10sdp"
+            android:textColor="@color/bottom_sheet_button"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@+id/button_open_camera" />
+
+        <TextView
+            android:id="@+id/button_open_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginTop="-20dp"
+            android:elevation="@dimen/_10sdp"
+            android:background="@drawable/bg_round_corner_bottom_bottomsheet"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Choose from library"
+            android:onClick="@{()->fragment.openGallery()}"
+            android:clickable="true"
+            android:textColor="@color/bottom_sheet_button"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@+id/border" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@drawable/bg_round_corner_solid_white"
+            android:layout_marginTop="5dp"
+            android:text="Cancel"
+            android:elevation="@dimen/_10sdp"
+            android:onClick="@{()->fragment.onCancelClicked()}"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/bottom_sheet_button"
+            android:textSize="@dimen/_15sdp"
+            android:clickable="true"
+            app:layout_constraintTop_toBottomOf="@+id/button_open_gallery"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

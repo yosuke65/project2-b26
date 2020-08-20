@@ -42,4 +42,10 @@ class AdapterToDoList(var mContext: Context, var viewModel:ViewModelToDo):Recycl
         mList = tasks
         notifyDataSetChanged()
     }
+
+    fun remove(adapterPosition: Int) {
+        mList.removeAt(adapterPosition)
+        notifyDataSetChanged()
+        notifyItemRangeChanged(adapterPosition,mList.size)
+    }
 }
