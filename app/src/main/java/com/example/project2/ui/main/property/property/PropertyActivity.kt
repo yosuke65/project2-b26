@@ -2,14 +2,17 @@ package com.example.project2.ui.main.property.property
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.project2.BuildConfig
 import com.example.project2.R
 import com.example.project2.base.BaseApplication
 import com.example.project2.models.Property
@@ -34,7 +37,7 @@ class PropertyActivity : AppCompatActivity() {
 
     companion object {
         const val TAG = "PropertyActivity"
-        const val APIKEY = "AIzaSyARZ8igdxxYbSs8TRUibGoz3bs3dKI6kv8"
+        const val API_KEY = BuildConfig.API_KEY
     }
 
     private val AUTOCOMPLETE_REQUEST_CODE = 1
@@ -79,7 +82,7 @@ class PropertyActivity : AppCompatActivity() {
         //Google place api
         Places.initialize(
             applicationContext,
-            APIKEY
+            API_KEY
         ) //*******Add Api key to manifest file*************
 
         // Create a new PlacesClient instance
@@ -103,6 +106,11 @@ class PropertyActivity : AppCompatActivity() {
     }
 
     private fun setToolBar() {
+
+        button_home_property.setOnClickListener{
+            onBackPressed()
+        }
+
         val toolbar: AppBarLayout = toolbar_collapsing_property
         toolbar.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
             private var scrollRange = -1
@@ -114,9 +122,6 @@ class PropertyActivity : AppCompatActivity() {
                 button_more.translationY = -verticalOffset.toFloat()
             }
         })
-        button_home_property.setOnClickListener{
-            onBackPressed()
-        }
     }
 
     private fun observe() {

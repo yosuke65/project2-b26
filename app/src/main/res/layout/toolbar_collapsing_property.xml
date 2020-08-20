@@ -43,8 +43,7 @@
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:background="@drawable/ic_baseline_arrow_back_ios_242"
-                    android:elevation="10dp" />
+                    android:background="@drawable/ic_baseline_arrow_back_ios_242" />
             </RelativeLayout>
 
 
